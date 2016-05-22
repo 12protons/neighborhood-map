@@ -17,6 +17,8 @@
   </head>
   <body>
 
+
+
     <div id="locations-list">
       <table>
         <tbody data-bind="foreach: filteredLocations">
@@ -28,19 +30,12 @@
     </div>
 
     <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 42.373, lng: -71.100},
-          zoom: 15
-        });
-      }
-    </script>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAD4-jX_xe3K1scmq9E4ETnFBj27Wp3Oo&callback=initMap" async defer></script>
+
     <script type='text/javascript' src='js/lib/knockout-3.4.0.js'></script>
     <script type='text/javascript' src='js/locations.js'></script>
+    <script type='text/javascript' src='js/map.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAD4-jX_xe3K1scmq9E4ETnFBj27Wp3Oo&callback=initMap" async defer></script>
   </body>
 </html>

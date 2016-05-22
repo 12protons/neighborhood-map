@@ -6,8 +6,8 @@ function LocationsViewModel() {
     }
 
     self.locations = ko.observableArray([
-        { name: "Arams Pizza", type: "Pizza" },
-        { name: "Puritan and Company", type: "Upscale"}
+        { name: "Arams Pizza", type: "Pizza", lat: "42.371459", long: "-71.081678" },
+        { name: "Puritan and Company", type: "Upscale", lat: "42.372961", long: "-71.096831"}
     ]);
 
     self.filter = ko.observable("");
