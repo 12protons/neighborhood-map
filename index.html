@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
   </head>
+
   <body>
-
-
-
     <div id="locations-list">
       <table>
-        <tbody data-bind="foreach: filteredLocations">
+        <tbody class="location" data-bind="foreach: filteredLocations">
           <tr>
-            <td data-bind="text: name"></td>
+            <td data-bind="text: name, click: clickItem"></td>
           </tr>
         </tbody>
       </table>
+      <input placeholder="Filter" id="search" data-bind="value: filter, valueUpdate:'afterkeydown'">
+      <br>
+      <br>
+      <span>Checkins data powered by <a href="https://foursquare.com/">Foursquare</a></span>
     </div>
 
-    <div id="map"></div>
-
-
+    <div id="map"/>
 
     <script type='text/javascript' src='js/lib/knockout-3.4.0.js'></script>
     <script type='text/javascript' src='js/locations.js'></script>
+    <script type='text/javascript' src='js/foursquare.js'></script>
     <script type='text/javascript' src='js/map.js'></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAD4-jX_xe3K1scmq9E4ETnFBj27Wp3Oo&callback=initMap" async defer></script>
   </body>

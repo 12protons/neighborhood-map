@@ -1,6 +1,8 @@
-var markers = [];
-var selectedMarker;
 var map;
+
+/**
+ * @description Initializes the Google Maps map
+ */
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -8,28 +10,45 @@ function initMap() {
       zoom: 15
     });
 
+    var locations = locationsViewModel.locations();
 
-    var locations = (new LocationsViewModel).locations();
-    var infowindow = new google.maps.InfoWindow();
+    for (i = 0; i < locations.length; i++) {
 
-    for (i = 0; i < locations.length; i++) {  
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
             map: map,
-            title: locations[i].name
+            title: locations[i].name,
+            location: locations[i]
         });
 
-        markers.push(marker);
+        locationsViewModel.markers.push({"location": locations[i], "marker" : marker});
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-                if (marker == selectedMarker) {
+                if (marker == locationsViewModel.selectedMarker) {
                     return;
-                } else if (selectedMarker != null) {
-                    selectedMarker.setAnimation(null);
+                } else if (locationsViewModel.selectedMarker != null) {
+                    locationsViewModel.selectedMarker.setAnimation(null);
                 }
                 marker.setAnimation(google.maps.Animation.BOUNCE);
-                selectedMarker = marker;
+                locationsViewModel.selectedMarker = marker;
+                locationsViewModel.selectedLocation(location);
+
+                if (locationsViewModel.infowindow) {
+                    locationsViewModel.infowindow.close();
+                }
+
+                var content = "<b>" + locations[i].restaurantname + "</b>";
+
+                if(locations[i].restaurantcheckins) {
+                    content += "<br>Checkins: " + locations[i].restaurantcheckins;
+                }
+
+                locationsViewModel.infowindow = new google.maps.InfoWindow({
+                    content: content
+                });
+
+                locationsViewModel.infowindow.open(map, marker);
             }
         })(marker, i));
     }

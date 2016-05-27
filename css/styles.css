@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+tbody.location {
+    color: #fff;
+}
+
+span {
+    color: #eee;
+    font-style: italic;
+}
+
+#locations-list {
+    float: left;
+    background-color: #bbb;
+    position: absolute;
+    z-index: 100;
+    padding: 15px;
+    border-style: solid;
+}
+
+#map {
+    height: 100%;
+}
