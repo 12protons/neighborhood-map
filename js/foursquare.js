@@ -52,9 +52,13 @@ function initFoursquare() {
                     restaurant = getNearbyRestaurantNameAndRatingFromResponse(requests[i].responseText);
                     locationsViewModel.locations()[i].restaurantname = restaurant.name;
                     locationsViewModel.locations()[i].restaurantcheckins = restaurant.checkins;
-                } else {
+                } else if (requests[i].readyState == 4) {
                     //There was an error! Lets just show some hardcoded data.
+                    console.log("error?");
                     locationsViewModel.locations()[i].restaurantname = locationsViewModel.locations()[i].hc;
+                    if (locationsViewModel.info().indexOf("Error") == -1) {
+                        locationsViewModel.info(locationsViewModel.info() + "<br>Error retrieving checkins");
+                    }
                 }
             }
 

@@ -24,6 +24,8 @@ function LocationsViewModel() {
 
     self.filter = ko.observable("");
 
+    self.info = ko.observable('Checkins data powered by <a href="https://foursquare.com/">Foursquare</a>');
+
     self.filter.subscribe(function() {
         self.markers.forEach(function(marker) {
             var filterMatches = Boolean(self.filterMatches(marker.location.name, self.filter()));

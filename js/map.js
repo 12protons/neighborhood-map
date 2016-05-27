@@ -53,3 +53,7 @@ function initMap() {
         })(marker, i));
     }
 }
+
+var onMapsError = function() {
+    locationsViewModel.info("Error loading Google Maps!");
+}
